@@ -19025,16 +19025,28 @@ var SimApp = React.createClass({
 
   getInitialState: function () {
     return {
-      value: 'class="btn btn-red50_ftg"'
+      color: "red",
+      code: "50",
+      btnType: "_ftg"
     };
   },
+  changeSelector: function (value) {
+    this.setState({
+      color: value.color,
+      code: value.code,
+      btnType: value.btnType
+    });
+  },
   render: function () {
+    var ftg = this.state.btnType === "_ftg" ? " ftg" : "";
+    var selectorValue = "btn-" + this.state.color + this.state.code + this.state.btnType + ftg;
+    var classValue = 'class="btn btn-' + this.state.color + this.state.code + this.state.btnType + '"';
     return React.createElement(
       "div",
       null,
-      React.createElement(SimSelect, null),
-      React.createElement(SimFigure, null),
-      React.createElement(SimDisplay, { data: this.state.value })
+      React.createElement(SimSelect, { onChangeSelector: this.changeSelector }),
+      React.createElement(SimFigure, { sValue: selectorValue }),
+      React.createElement(SimDisplay, { cValue: classValue })
     );
   }
 });
@@ -19051,6 +19063,13 @@ var SimSelect = React.createClass({
       "cursor": "pointer"
     }
   },
+  send: function (e) {
+    var value = {};
+    value.color = this.refs.color.value;
+    value.code = value.color === "black" || value.color === "white" ? "" : this.refs.code.value;
+    value.btnType = this.refs.btnType.value;
+    this.props.onChangeSelector(value);
+  },
   render: function () {
     return React.createElement(
       "div",
@@ -19058,7 +19077,7 @@ var SimSelect = React.createClass({
       "btn-",
       React.createElement(
         "select",
-        { style: this.style.select, className: "color" },
+        { style: this.style.select, className: "color", onChange: this.send, ref: "color" },
         React.createElement(
           "option",
           { value: "red" },
@@ -19162,7 +19181,7 @@ var SimSelect = React.createClass({
       ),
       React.createElement(
         "select",
-        { style: this.style.select, className: "code" },
+        { style: this.style.select, className: "code", onChange: this.send, ref: "code" },
         React.createElement(
           "option",
           { value: "50" },
@@ -19216,7 +19235,7 @@ var SimSelect = React.createClass({
       ),
       React.createElement(
         "select",
-        { style: this.style.select, className: "btntype" },
+        { style: this.style.select, className: "btntype", onChange: this.send, ref: "btnType" },
         React.createElement(
           "option",
           { value: "_ftg" },
@@ -19248,12 +19267,13 @@ var SimFigure = React.createClass({
     }
   },
   render: function () {
+    var selectorValue = "btn " + this.props.sValue;
     return React.createElement(
       "figure",
       { style: this.style.figure },
       React.createElement(
         "button",
-        { className: "btn btn-red50_ftg ftg" },
+        { className: selectorValue },
         "button"
       )
     );
@@ -19271,11 +19291,11 @@ var SimDisplay = React.createClass({
     }
   },
   render: function () {
-    var selectorName = this.props.data;
+    var classValue = this.props.cValue;
     return React.createElement(
       "div",
       { style: this.style.div, className: "display" },
-      selectorName
+      classValue
     );
   }
 });
