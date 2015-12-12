@@ -1,25 +1,25 @@
-var React = require("react");
-var ReactDOM = require("react-dom");
+import React from "react";
+import ReactDOM from "react-dom";
 
-var SimApp = React.createClass({
-  getInitialState: function () {
+const SimApp = React.createClass({
+  getInitialState() {
     return {
       color: "red",
       code: "50",
       btnType: "_ftg"
     };
   },
-  changeSelector: function (value) {
+  changeSelector(value) {
     this.setState({
       color: value.color,
       code: value.code,
       btnType: value.btnType
     });
   },
-  render: function () {
-    var ftg = (this.state.btnType === "_ftg") ? " ftg" : "";
-    var selectorValue = "btn-" + this.state.color + this.state.code + this.state.btnType + ftg;
-    var classValue = 'class="btn btn-' + this.state.color + this.state.code + this.state.btnType + '"';
+  render() {
+    let ftg = (this.state.btnType === "_ftg") ? " ftg" : "";
+    let selectorValue = "btn-" + this.state.color + this.state.code + this.state.btnType + ftg;
+    let classValue = 'class="btn btn-' + this.state.color + this.state.code + this.state.btnType + '"';
     return (
       <div>
         <SimSelect onChangeSelector={this.changeSelector} />
@@ -30,7 +30,7 @@ var SimApp = React.createClass({
   }
 });
 
-var SimSelect = React.createClass({
+const SimSelect = React.createClass({
   style: {
     div: {
       "margin": "16px",
@@ -40,8 +40,8 @@ var SimSelect = React.createClass({
       "cursor": "pointer"
     }
   },
-  send: function (e) {
-    var value = {};
+  send(e) {
+    let value = {};
     value.color = this.refs.color.value;
     value.code = (value.color === "black" || value.color === "white") ? "" : this.refs.code.value;
     value.btnType = this.refs.btnType.value;
@@ -57,18 +57,18 @@ var SimSelect = React.createClass({
   btnType: [
     "_ftg", "_rsd", "_flt", ""
   ],
-  render: function () {
-    var colorOptions = this.color.map(function (color) {
+  render() {
+    let colorOptions = this.color.map((color) => {
       return (
         <option value={color} key={color}>{color}</option>
       );
     });
-    var codeOptions = this.code.map(function (code) {
+    let codeOptions = this.code.map((code) => {
       return (
         <option value={code} key={code}>{code}</option>
       );
     });
-    var typeOptions = this.btnType.map(function (type) {
+    let typeOptions = this.btnType.map((type) => {
       return (
         <option value={type} key={type}>{type}</option>
       );
@@ -89,15 +89,15 @@ var SimSelect = React.createClass({
   }
 });
 
-var SimFigure = React.createClass({
+const SimFigure = React.createClass({
   style: {
     figure: {
       "textAlign": "center",
       "margin": "16px"
     }
   },
-  render: function () {
-    var selectorValue = "btn " + this.props.sValue;
+  render() {
+    let selectorValue = "btn " + this.props.sValue;
     return (
       <figure style={this.style.figure}>
         <button className={selectorValue}>button</button>
@@ -106,7 +106,7 @@ var SimFigure = React.createClass({
   }
 });
 
-var SimDisplay = React.createClass({
+const SimDisplay = React.createClass({
   style: {
     div: {
       "fontSize": "18px",
@@ -114,8 +114,8 @@ var SimDisplay = React.createClass({
       "textAlign": "center"
     }
   },
-  render: function () {
-    var classValue = this.props.cValue;
+  render() {
+    let classValue = this.props.cValue;
     return (
       <div style={this.style.div} className="display">{classValue}</div>
     );

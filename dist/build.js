@@ -19017,41 +19017,49 @@ process.chdir = function (dir) {
 process.umask = function() { return 0; };
 
 },{}],159:[function(require,module,exports){
-var React = require("react");
-var ReactDOM = require("react-dom");
+"use strict";
 
-var SimApp = React.createClass({
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = require("react-dom");
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var SimApp = _react2.default.createClass({
   displayName: "SimApp",
-
-  getInitialState: function () {
+  getInitialState: function getInitialState() {
     return {
       color: "red",
       code: "50",
       btnType: "_ftg"
     };
   },
-  changeSelector: function (value) {
+  changeSelector: function changeSelector(value) {
     this.setState({
       color: value.color,
       code: value.code,
       btnType: value.btnType
     });
   },
-  render: function () {
+  render: function render() {
     var ftg = this.state.btnType === "_ftg" ? " ftg" : "";
     var selectorValue = "btn-" + this.state.color + this.state.code + this.state.btnType + ftg;
     var classValue = 'class="btn btn-' + this.state.color + this.state.code + this.state.btnType + '"';
-    return React.createElement(
+    return _react2.default.createElement(
       "div",
       null,
-      React.createElement(SimSelect, { onChangeSelector: this.changeSelector }),
-      React.createElement(SimFigure, { sValue: selectorValue }),
-      React.createElement(SimDisplay, { cValue: classValue })
+      _react2.default.createElement(SimSelect, { onChangeSelector: this.changeSelector }),
+      _react2.default.createElement(SimFigure, { sValue: selectorValue }),
+      _react2.default.createElement(SimDisplay, { cValue: classValue })
     );
   }
 });
 
-var SimSelect = React.createClass({
+var SimSelect = _react2.default.createClass({
   displayName: "SimSelect",
 
   style: {
@@ -19063,53 +19071,54 @@ var SimSelect = React.createClass({
       "cursor": "pointer"
     }
   },
-  send: function (e) {
+  send: function send(e) {
     var value = {};
     value.color = this.refs.color.value;
     value.code = value.color === "black" || value.color === "white" ? "" : this.refs.code.value;
     value.btnType = this.refs.btnType.value;
     this.props.onChangeSelector(value);
   },
+
   color: ["red", "pink", "purple", "deeppurple", "indigo", "blue", "lightblue", "cyan", "teal", "green", "lime", "yellow", "amber", "orange", "deeporange", "brown", "grey", "bluegrey", "black", "white"],
   code: ["50", "100", "200", "300", "400", "500", "600", "700", "800", "900"],
   btnType: ["_ftg", "_rsd", "_flt", ""],
-  render: function () {
+  render: function render() {
     var colorOptions = this.color.map(function (color) {
-      return React.createElement(
+      return _react2.default.createElement(
         "option",
         { value: color, key: color },
         color
       );
     });
     var codeOptions = this.code.map(function (code) {
-      return React.createElement(
+      return _react2.default.createElement(
         "option",
         { value: code, key: code },
         code
       );
     });
     var typeOptions = this.btnType.map(function (type) {
-      return React.createElement(
+      return _react2.default.createElement(
         "option",
         { value: type, key: type },
         type
       );
     });
-    return React.createElement(
+    return _react2.default.createElement(
       "div",
       { style: this.style.div },
       "btn-",
-      React.createElement(
+      _react2.default.createElement(
         "select",
         { style: this.style.select, className: "color", onChange: this.send, ref: "color" },
         colorOptions
       ),
-      React.createElement(
+      _react2.default.createElement(
         "select",
         { style: this.style.select, className: "code", onChange: this.send, ref: "code" },
         codeOptions
       ),
-      React.createElement(
+      _react2.default.createElement(
         "select",
         { style: this.style.select, className: "btntype", onChange: this.send, ref: "btnType" },
         typeOptions
@@ -19118,7 +19127,7 @@ var SimSelect = React.createClass({
   }
 });
 
-var SimFigure = React.createClass({
+var SimFigure = _react2.default.createClass({
   displayName: "SimFigure",
 
   style: {
@@ -19127,12 +19136,12 @@ var SimFigure = React.createClass({
       "margin": "16px"
     }
   },
-  render: function () {
+  render: function render() {
     var selectorValue = "btn " + this.props.sValue;
-    return React.createElement(
+    return _react2.default.createElement(
       "figure",
       { style: this.style.figure },
-      React.createElement(
+      _react2.default.createElement(
         "button",
         { className: selectorValue },
         "button"
@@ -19141,7 +19150,7 @@ var SimFigure = React.createClass({
   }
 });
 
-var SimDisplay = React.createClass({
+var SimDisplay = _react2.default.createClass({
   displayName: "SimDisplay",
 
   style: {
@@ -19151,9 +19160,9 @@ var SimDisplay = React.createClass({
       "textAlign": "center"
     }
   },
-  render: function () {
+  render: function render() {
     var classValue = this.props.cValue;
-    return React.createElement(
+    return _react2.default.createElement(
       "div",
       { style: this.style.div, className: "display" },
       classValue
@@ -19161,6 +19170,6 @@ var SimDisplay = React.createClass({
   }
 });
 
-ReactDOM.render(React.createElement(SimApp, null), document.getElementById("content"));
+_reactDom2.default.render(_react2.default.createElement(SimApp, null), document.getElementById("content"));
 
 },{"react":157,"react-dom":1}]},{},[159]);
