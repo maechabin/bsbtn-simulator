@@ -19070,7 +19070,31 @@ var SimSelect = React.createClass({
     value.btnType = this.refs.btnType.value;
     this.props.onChangeSelector(value);
   },
+  color: ["red", "pink", "purple", "deeppurple", "indigo", "blue", "lightblue", "cyan", "teal", "green", "lime", "yellow", "amber", "orange", "deeporange", "brown", "grey", "bluegrey", "black", "white"],
+  code: ["50", "100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  btnType: ["_ftg", "_rsd", "_flt", ""],
   render: function () {
+    var colorOptions = this.color.map(function (color) {
+      return React.createElement(
+        "option",
+        { value: color, key: color },
+        color
+      );
+    });
+    var codeOptions = this.code.map(function (code) {
+      return React.createElement(
+        "option",
+        { value: code, key: code },
+        code
+      );
+    });
+    var typeOptions = this.btnType.map(function (type) {
+      return React.createElement(
+        "option",
+        { value: type, key: type },
+        type
+      );
+    });
     return React.createElement(
       "div",
       { style: this.style.div },
@@ -19078,180 +19102,17 @@ var SimSelect = React.createClass({
       React.createElement(
         "select",
         { style: this.style.select, className: "color", onChange: this.send, ref: "color" },
-        React.createElement(
-          "option",
-          { value: "red" },
-          "red"
-        ),
-        React.createElement(
-          "option",
-          { value: "pink" },
-          "pink"
-        ),
-        React.createElement(
-          "option",
-          { value: "purple" },
-          "purple"
-        ),
-        React.createElement(
-          "option",
-          { value: "deeppurple" },
-          "deeppurple"
-        ),
-        React.createElement(
-          "option",
-          { value: "indigo" },
-          "indigo"
-        ),
-        React.createElement(
-          "option",
-          { value: "blue" },
-          "blue"
-        ),
-        React.createElement(
-          "option",
-          { value: "lightblue" },
-          "lightblue"
-        ),
-        React.createElement(
-          "option",
-          { value: "cyan" },
-          "cyan"
-        ),
-        React.createElement(
-          "option",
-          { value: "teal" },
-          "teal"
-        ),
-        React.createElement(
-          "option",
-          { value: "green" },
-          "lightgreen"
-        ),
-        React.createElement(
-          "option",
-          { value: "lime" },
-          "lime"
-        ),
-        React.createElement(
-          "option",
-          { value: "yellow" },
-          "yellow"
-        ),
-        React.createElement(
-          "option",
-          { value: "amber" },
-          "amber"
-        ),
-        React.createElement(
-          "option",
-          { value: "orange" },
-          "orange"
-        ),
-        React.createElement(
-          "option",
-          { value: "deeporange" },
-          "deeporange"
-        ),
-        React.createElement(
-          "option",
-          { value: "brown" },
-          "brown"
-        ),
-        React.createElement(
-          "option",
-          { value: "grey" },
-          "grey"
-        ),
-        React.createElement(
-          "option",
-          { value: "bluegrey" },
-          "bluegrey"
-        ),
-        React.createElement(
-          "option",
-          { value: "black" },
-          "black"
-        ),
-        React.createElement(
-          "option",
-          { value: "white" },
-          "white"
-        )
+        colorOptions
       ),
       React.createElement(
         "select",
         { style: this.style.select, className: "code", onChange: this.send, ref: "code" },
-        React.createElement(
-          "option",
-          { value: "50" },
-          "50"
-        ),
-        React.createElement(
-          "option",
-          { value: "100" },
-          "100"
-        ),
-        React.createElement(
-          "option",
-          { value: "200" },
-          "200"
-        ),
-        React.createElement(
-          "option",
-          { value: "300" },
-          "300"
-        ),
-        React.createElement(
-          "option",
-          { value: "400" },
-          "400"
-        ),
-        React.createElement(
-          "option",
-          { value: "500" },
-          "500"
-        ),
-        React.createElement(
-          "option",
-          { value: "600" },
-          "600"
-        ),
-        React.createElement(
-          "option",
-          { value: "700" },
-          "700"
-        ),
-        React.createElement(
-          "option",
-          { value: "800" },
-          "800"
-        ),
-        React.createElement(
-          "option",
-          { value: "900" },
-          "900"
-        )
+        codeOptions
       ),
       React.createElement(
         "select",
         { style: this.style.select, className: "btntype", onChange: this.send, ref: "btnType" },
-        React.createElement(
-          "option",
-          { value: "_ftg" },
-          "_ftg"
-        ),
-        React.createElement(
-          "option",
-          { value: "_rsd" },
-          "_rsd"
-        ),
-        React.createElement(
-          "option",
-          { value: "_flt" },
-          "_flt"
-        ),
-        React.createElement("option", { value: "" })
+        typeOptions
       )
     );
   }

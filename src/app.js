@@ -47,48 +47,42 @@ var SimSelect = React.createClass({
     value.btnType = this.refs.btnType.value;
     this.props.onChangeSelector(value);
   },
+  color: [
+    "red", "pink", "purple", "deeppurple", "indigo", "blue", "lightblue", "cyan", "teal", "green",
+    "lime", "yellow", "amber", "orange", "deeporange", "brown", "grey", "bluegrey", "black", "white"
+  ],
+  code: [
+    "50", "100", "200", "300", "400", "500", "600", "700", "800", "900"
+  ],
+  btnType: [
+    "_ftg", "_rsd", "_flt", ""
+  ],
   render: function () {
+    var colorOptions = this.color.map(function (color) {
+      return (
+        <option value={color} key={color}>{color}</option>
+      );
+    });
+    var codeOptions = this.code.map(function (code) {
+      return (
+        <option value={code} key={code}>{code}</option>
+      );
+    });
+    var typeOptions = this.btnType.map(function (type) {
+      return (
+        <option value={type} key={type}>{type}</option>
+      );
+    });
     return (
       <div style={this.style.div}>btn-
         <select style={this.style.select} className="color" onChange={this.send} ref="color">
-          <option value="red">red</option>
-          <option value="pink">pink</option>
-          <option value="purple">purple</option>
-          <option value="deeppurple">deeppurple</option>
-          <option value="indigo">indigo</option>
-          <option value="blue">blue</option>
-          <option value="lightblue">lightblue</option>
-          <option value="cyan">cyan</option>
-          <option value="teal">teal</option>
-          <option value="green">lightgreen</option>
-          <option value="lime">lime</option>
-          <option value="yellow">yellow</option>
-          <option value="amber">amber</option>
-          <option value="orange">orange</option>
-          <option value="deeporange">deeporange</option>
-          <option value="brown">brown</option>
-          <option value="grey">grey</option>
-          <option value="bluegrey">bluegrey</option>
-          <option value="black">black</option>
-          <option value="white">white</option>
+          {colorOptions}
         </select>
         <select style={this.style.select} className="code" onChange={this.send} ref="code">
-          <option value="50">50</option>
-          <option value="100">100</option>
-          <option value="200">200</option>
-          <option value="300">300</option>
-          <option value="400">400</option>
-          <option value="500">500</option>
-          <option value="600">600</option>
-          <option value="700">700</option>
-          <option value="800">800</option>
-          <option value="900">900</option>
+          {codeOptions}
         </select>
         <select style={this.style.select} className="btntype" onChange={this.send} ref="btnType">
-          <option value="_ftg">_ftg</option>
-          <option value="_rsd">_rsd</option>
-          <option value="_flt">_flt</option>
-          <option value=""></option>
+          {typeOptions}
         </select>
       </div>
     );
