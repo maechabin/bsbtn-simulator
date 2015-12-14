@@ -19062,6 +19062,17 @@ var SimApp = _react2.default.createClass({
 var SimSelect = _react2.default.createClass({
   displayName: "SimSelect",
 
+  propTypes: {
+    onChangeSelector: _react2.default.PropTypes.func.isRequired
+  },
+  getDefaultProps: function getDefaultProps() {
+    return {
+      color: ["red", "pink", "purple", "deeppurple", "indigo", "blue", "lightblue", "cyan", "teal", "green", "lime", "yellow", "amber", "orange", "deeporange", "brown", "grey", "bluegrey", "black", "white"],
+      code: ["50", "100", "200", "300", "400", "500", "600", "700", "800", "900"],
+      btnType: ["_ftg", "_rsd", "_flt", ""]
+    };
+  },
+
   style: {
     div: {
       "margin": "16px",
@@ -19078,26 +19089,22 @@ var SimSelect = _react2.default.createClass({
     value.btnType = this.refs.btnType.value;
     this.props.onChangeSelector(value);
   },
-
-  color: ["red", "pink", "purple", "deeppurple", "indigo", "blue", "lightblue", "cyan", "teal", "green", "lime", "yellow", "amber", "orange", "deeporange", "brown", "grey", "bluegrey", "black", "white"],
-  code: ["50", "100", "200", "300", "400", "500", "600", "700", "800", "900"],
-  btnType: ["_ftg", "_rsd", "_flt", ""],
   render: function render() {
-    var colorOptions = this.color.map(function (color) {
+    var colorOptions = this.props.color.map(function (color) {
       return _react2.default.createElement(
         "option",
         { value: color, key: color },
         color
       );
     });
-    var codeOptions = this.code.map(function (code) {
+    var codeOptions = this.props.code.map(function (code) {
       return _react2.default.createElement(
         "option",
         { value: code, key: code },
         code
       );
     });
-    var typeOptions = this.btnType.map(function (type) {
+    var typeOptions = this.props.btnType.map(function (type) {
       return _react2.default.createElement(
         "option",
         { value: type, key: type },
@@ -19130,6 +19137,9 @@ var SimSelect = _react2.default.createClass({
 var SimFigure = _react2.default.createClass({
   displayName: "SimFigure",
 
+  propTypes: {
+    sValue: _react2.default.PropTypes.string.isRequired
+  },
   style: {
     figure: {
       "textAlign": "center",
@@ -19153,6 +19163,9 @@ var SimFigure = _react2.default.createClass({
 var SimDisplay = _react2.default.createClass({
   displayName: "SimDisplay",
 
+  propTypes: {
+    cValue: _react2.default.PropTypes.string.isRequired
+  },
   style: {
     div: {
       "fontSize": "18px",

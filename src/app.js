@@ -31,6 +31,23 @@ const SimApp = React.createClass({
 });
 
 const SimSelect = React.createClass({
+  propTypes: {
+    onChangeSelector: React.PropTypes.func.isRequired
+  },
+  getDefaultProps() {
+    return {
+      color: [
+        "red", "pink", "purple", "deeppurple", "indigo", "blue", "lightblue", "cyan", "teal", "green",
+        "lime", "yellow", "amber", "orange", "deeporange", "brown", "grey", "bluegrey", "black", "white"
+      ],
+      code: [
+        "50", "100", "200", "300", "400", "500", "600", "700", "800", "900"
+      ],
+      btnType: [
+        "_ftg", "_rsd", "_flt", ""
+      ],
+    };
+  },
   style: {
     div: {
       "margin": "16px",
@@ -47,28 +64,18 @@ const SimSelect = React.createClass({
     value.btnType = this.refs.btnType.value;
     this.props.onChangeSelector(value);
   },
-  color: [
-    "red", "pink", "purple", "deeppurple", "indigo", "blue", "lightblue", "cyan", "teal", "green",
-    "lime", "yellow", "amber", "orange", "deeporange", "brown", "grey", "bluegrey", "black", "white"
-  ],
-  code: [
-    "50", "100", "200", "300", "400", "500", "600", "700", "800", "900"
-  ],
-  btnType: [
-    "_ftg", "_rsd", "_flt", ""
-  ],
   render() {
-    let colorOptions = this.color.map((color) => {
+    let colorOptions = this.props.color.map((color) => {
       return (
         <option value={color} key={color}>{color}</option>
       );
     });
-    let codeOptions = this.code.map((code) => {
+    let codeOptions = this.props.code.map((code) => {
       return (
         <option value={code} key={code}>{code}</option>
       );
     });
-    let typeOptions = this.btnType.map((type) => {
+    let typeOptions = this.props.btnType.map((type) => {
       return (
         <option value={type} key={type}>{type}</option>
       );
@@ -90,6 +97,9 @@ const SimSelect = React.createClass({
 });
 
 const SimFigure = React.createClass({
+  propTypes: {
+    sValue: React.PropTypes.string.isRequired
+  },
   style: {
     figure: {
       "textAlign": "center",
@@ -107,6 +117,9 @@ const SimFigure = React.createClass({
 });
 
 const SimDisplay = React.createClass({
+  propTypes: {
+    cValue: React.PropTypes.string.isRequired
+  },
   style: {
     div: {
       "fontSize": "18px",
